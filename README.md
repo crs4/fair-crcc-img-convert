@@ -1,4 +1,4 @@
-# Snakemake workflow: `FAIR CRCC - image convertion`
+# Snakemake workflow: `FAIR CRCC - image conversion`
 
 [![Snakemake](https://img.shields.io/badge/snakemake-≥6.3.0-brightgreen.svg)](https://snakemake.github.io)
 [![GitHub actions status](https://github.com/crs4/fair-crcc-img-convert/workflows/Tests/badge.svg?branch=main)](https://github.com/crs4/fair-crcc-img-convert/actions?query=branch%3Amain+workflow%3ATests)
