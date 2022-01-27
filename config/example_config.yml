@@ -1,0 +1,16 @@
+
+# For Mirax files
+img_directory: "/mnt/rbd/data/sftp/BG/BG/0592/"
+# For SVS files
+#img_directory: "/mnt/rbd/data/sftp/CCREB/regina1/standalone/"
+output_storage: "/mnt/rbd/data/sftp/fair-crcc/"
+
+keypair:
+  private: /mnt/rbd/data/sftp/fair-crcc/bbmri-key
+  public: /mnt/rbd/data/sftp/fair-crcc/bbmri-key.pub
+
+log_level: WARN
+
+tiff:
+  compression: "JPEG-2000 Lossy" # (Uncompressed, LZW, JPEG-2000, JPEG-2000 Lossy, JPEG, zlib; default: LZW)
+  quality: 0.5 # apparently only has an effect for JPEG-2000 Lossy
