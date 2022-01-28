@@ -18,7 +18,7 @@ rule crypt_tiff:
         "docker://ilveroluca/crypt4gh:1.5"
     shell:
         """
-        mkdir -p $(dirname {output.crypt}) $(dirname {output.checksum}) &&
-        crypt4gh encrypt --sk {params.private_key:q} --recipient_pk {params.public_key:q} < {input.tiff:q} > {output.crypt:q} 2> {log} &&
-        sha{params.checksum_alg}sum {output.crypt:q} > {output.checksum:q} 2>> {log}
+        mkdir -p $(dirname {output.crypt:q}) $(dirname {output.checksum:q}) &&
+        crypt4gh encrypt --sk {params.private_key:q} --recipient_pk {params.public_key:q} < {input.tiff:q} > {output.crypt:q} 2> {log:q} &&
+        sha{params.checksum_alg}sum {output.crypt:q} > {output.checksum:q} 2>> {log:q}
         """

@@ -24,7 +24,7 @@ rule bioformats_to_raw:
         4
     shell:
         """
-        mkdir -p $(dirname {output}) &&
+        mkdir -p $(dirname {output:q}) &&
         bioformats2raw \
             --log-level={params.log_level} \
             --max_workers={params.workers} \
@@ -32,7 +32,7 @@ rule bioformats_to_raw:
             --tile_width={params.tile_width} \
             --memo-directory={params.memo_directory} \
             --max_cached_tiles={params.max_cached_tiles} \
-            {input:q} {output:q} &> {log}
+            {input:q} {output:q} &> {log:q}
         """
 
 
@@ -61,11 +61,11 @@ rule raw_to_ometiff:
         4
     shell:
         """
-        mkdir -p $(dirname {output}) &&
+        mkdir -p $(dirname {output:q}) &&
         raw2ometiff \
             --compression={params.compression:q} \
             --quality={params.quality} \
             --log-level={params.log_level} \
             --max_workers={params.workers} \
-            {input:q} {output:q} &> {log}
+            {input:q} {output:q} &> {log:q}
         """
