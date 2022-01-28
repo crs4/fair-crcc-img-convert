@@ -1,16 +1,20 @@
+# Example workflow configuration
+repository:
+  path: "/mnt/rbd/data/sftp/fair-crcc/"
 
-# For Mirax files
-img_directory: "/mnt/rbd/data/sftp/BG/BG/0592/"
-# For SVS files
-#img_directory: "/mnt/rbd/data/sftp/CCREB/regina1/standalone/"
-output_storage: "/mnt/rbd/data/sftp/fair-crcc/"
+sources:
+  items:
+  - some/directory/to/glob
+  - another/individual/file.mrxs
 
 keypair:
-  private: /mnt/rbd/data/sftp/fair-crcc/bbmri-key
-  public: /mnt/rbd/data/sftp/fair-crcc/bbmri-key.pub
+  private: bbmri-key
+  public: bbmri-key.pub
 
-log_level: WARN
-
-tiff:
-  compression: "JPEG-2000 Lossy" # (Uncompressed, LZW, JPEG-2000, JPEG-2000 Lossy, JPEG, zlib; default: LZW)
-  quality: 0.5 # apparently only has an effect for JPEG-2000 Lossy
+output:
+  format: ome-tiff
+  compression: "JPEG-2000 Lossy"
+  quality: 0.5 # at the moment only has an effect for JPEG-2000 Lossy
+  tile_height: 4096
+  tile_width: 4096
+  max_cached_tiles: 256
