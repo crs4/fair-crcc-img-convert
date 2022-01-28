@@ -54,7 +54,7 @@ rule all_tiffs:
 
 rule all_tiff_checksums:
     input:
-        tiffs = rules.all_tiffs.input.tiffs,
+        tiffs = [ t + '.sha' for t in rules.all_tiffs.input.tiffs ],
     output:
         "tiff_slides/tiff_checksums"
     log:
