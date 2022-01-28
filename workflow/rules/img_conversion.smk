@@ -41,11 +41,11 @@ rule raw_to_ometiff:
     input:
         "raw_slides/{slide}.raw"
     output:
-        protected("tiff_slides/{slide}.ome.tiff")
+        protected("tiffs/{slide}.ome.tiff")
     log:
-        "tiff_slides/{slide}.log"
+        "tiffs/{slide}.log"
     benchmark:
-        "tiff_slides/{slide}.bench"
+        "tiffs/{slide}.bench"
     params:
         compression = config['output']['compression'],
         quality = config['output']['quality'],

@@ -1,13 +1,13 @@
 
 rule compute_tiff_checksum:
     input:
-        tiff = "tiff_slides/{slide}.tiff"
+        tiff = "tiffs/{slide}.tiff"
     output:
-        chksum = "tiff_slides/{slide}.tiff.sha"
+        chksum = "tiffs/{slide}.tiff.sha"
     log:
-        "tiff_slides/{slide}.tiff.sha.log"
+        "tiffs/{slide}.tiff.sha.log"
     benchmark:
-        "tiff_slides/{slide}.tiff.sha.bench"
+        "tiffs/{slide}.tiff.sha.bench"
     params:
         checksum_alg = 256
     resources:

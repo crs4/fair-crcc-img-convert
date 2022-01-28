@@ -1,6 +1,6 @@
 rule crypt_tiff:
     input:
-        tiff = "tiff_slides/{slide}.ome.tiff"
+        tiff = "tiffs/{slide}.ome.tiff"
     output:
         crypt = protected("c4gh/{slide}.ome.tiff.c4gh"),
         checksum = "c4gh/{slide}.ome.tiff.c4gh.sha"
