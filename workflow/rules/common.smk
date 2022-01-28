@@ -18,6 +18,8 @@ Extensions = ('.mrxs', '.svs', '.ndpi')
 #### Configuration ####
 validate(config, schema="../schemas/config.schema.yml")  # also sets default values
 
+envvars:
+    "TMPDIR"
 
 ##### Helper functions #########
 
