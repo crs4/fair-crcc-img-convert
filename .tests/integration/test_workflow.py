@@ -78,7 +78,7 @@ def print_log_files(base_dir: Path, fp) -> None:
         with open(log) as f:
             fp.write(f"Filename: {log}\n")
             fp.write(f.read())
-            fp.write(40 * '=+')
+            fp.write(40 * '=+' + '\n\n')
 
 
 def test_workflow(empty_repository, mirax_1_zip):
