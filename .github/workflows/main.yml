@@ -26,7 +26,8 @@ jobs:
       shell: bash -l {0}
       run: |
         singularity  exec --home $PWD  --env TMPDIR=$PWD/img-convert-wf8xpu6asv docker://ilveroluca/bioformats2raw:0.3.1 bash -c "env | grep -i java"
-        singularity  exec --home $PWD  --env TMPDIR=$PWD/img-convert-wf8xpu6asv docker://ilveroluca/bioformats2raw:0.3.1 bash -c "bioformats2raw -h"
+        singularity  exec --cleanenv --home $PWD  --env TMPDIR=$PWD/img-convert-wf8xpu6asv docker://ilveroluca/bioformats2raw:0.3.1 bash -c "env | grep -i java"
+        singularity  exec --cleanenv --home $PWD  --env TMPDIR=$PWD/img-convert-wf8xpu6asv docker://ilveroluca/bioformats2raw:0.3.1 bash -c "bioformats2raw -h"
 
     - uses: conda-incubator/setup-miniconda@v2
       with:
