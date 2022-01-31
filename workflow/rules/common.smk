@@ -18,8 +18,6 @@ Extensions = ('.mrxs', '.svs', '.ndpi')
 #### Configuration ####
 validate(config, schema="../schemas/config.schema.yml")  # also sets default values
 
-envvars:
-    "TMPDIR"
 
 ##### Helper functions #########
 
@@ -105,5 +103,8 @@ def configure_environment():
         else:
             mount_options = 'ro'
         workflow.singularity_args += ' '.join([
+            # Use --cleanenv to work around singularity exec overriding env
+            # vars from docker image with host values (https://github.com/sylabs/singularity/issues/533)
+            " --cleanenv",
             f" --bind {repository}:{repository}:{mount_options}",
             f" --env TMPDIR={get_tmp_dir()}"])

@@ -4,6 +4,7 @@ import logging
 import os
 import shutil
 import subprocess
+import sys
 import tempfile
 import yaml
 
@@ -70,6 +71,16 @@ def setup_working_dir(scratch_path: Path, cfg: Mapping[str, Any]) -> None:
         shutil.copy2(key, Path(scratch_path, key.name))
 
 
+def print_log_files(base_dir: Path, fp) -> None:
+    log_files = (Path(root, f) for root, _, files in os.walk(base_dir)
+                 for f in files if f.endswith('.log'))
+    for log in log_files:
+        with open(log) as f:
+            fp.write(f"Filename: {log}\n")
+            fp.write(f.read())
+            fp.write(40 * '=+' + '\n\n')
+
+
 def test_workflow(empty_repository, mirax_1_zip):
     mrxs_file = extract_mirax(empty_repository, mirax_1_zip)
     cfg = create_config(empty_repository, mrxs_file)
@@ -86,7 +97,12 @@ def test_workflow(empty_repository, mirax_1_zip):
             '--snakefile', get_workflow_path().resolve(),
             '--use-singularity', '--verbose', '--cores', 'all',
             'all_encrypted_tiffs']
-        subprocess.check_output(snakemake_cmd, cwd=scratch_path)
+        try:
+            subprocess.check_output(snakemake_cmd, cwd=scratch_path)
+        except subprocess.CalledProcessError:
+            print_log_files(scratch_path, sys.stderr)
+            raise
+
         tiff_files = list((scratch_path / 'tiffs').rglob('*.tiff'))
         assert len(tiff_files) == 1
         c4gh_files = list((scratch_path / 'c4gh').rglob('*.c4gh'))
