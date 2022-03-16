@@ -1,13 +1,13 @@
-rule crypt_tiff:
+rule crypt_file:
     input:
-        tiff = "tiffs/{slide}.ome.tiff"
+        tiff = "tiffs/{slide}"
     output:
-        crypt = protected("c4gh/{slide}.ome.tiff.c4gh"),
-        checksum = "c4gh/{slide}.ome.tiff.c4gh.sha"
+        crypt = protected("c4gh/{slide}.c4gh"),
+        checksum = "c4gh/{slide}.c4gh.sha"
     log:
-        "c4gh/{slide}.log"
+        "logs/crypt_file/{slide}.log"
     benchmark:
-        "c4gh/{slide}.bench"
+        "bench/crypt_file/{slide}.bench"
     params:
         checksum_alg = 256,
         private_key = lambda _: config['keypair']['private'],

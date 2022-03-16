@@ -12,10 +12,16 @@ min_version("6.5.0")
 
 
 # Run as:
-# snakemake --snakefile ./img-convert.smk --profile ./profile --configfile zenbanc_config.yml --use-singularity --cores --verbose
+# snakemake --snakefile ./img-convert.smk --profile ./profile --configfile zenbanc_config.yml --use-singularity --cores
 #
 # The configuration must specify the input and output directory trees as
 # `img_directory` and `output_storage`
+
+
+# Default container for rules
+container: "docker://ilveroluca/crypt4gh:1.5"
+
+
 
 ##### Load rules #####
 
@@ -31,24 +37,31 @@ include: "rules/encryption.smk"
 
 configure_environment()
 
+
+##### Glob input ####
+
 source_slides = glob_source_paths()
 log(len(source_slides), "source slides are: ", [ str(s) for s in source_slides ])
 
 
-##### Rules #####
 
+###### Main target rules ##########
 
 rule all_encrypted_tiffs:
     input:
-        encrypted_tiffs =  \
+        encrypted_tiffs = \
             [ Path("c4gh") / s.with_suffix('.ome.tiff' + new_suffix)
                 for s in source_slides for new_suffix in ('.c4gh', '.c4gh.sha') ],
+        encrypted_thumbnails = \
+            [ Path("c4gh") / f"{s.with_suffix('')}_thumb.jpg.c4gh"
+                for s in source_slides ],
         checksums = "tiffs/tiff_checksums",
 
 
 rule all_tiffs:
     input:
         tiffs = [ Path("tiffs") / s.with_suffix('.ome.tiff') for s in source_slides ],
+        thumbnails = [ Path("tiffs") / f"{s.with_suffix('')}_thumb.jpg" for s in source_slides ],
         checksums = "tiffs/tiff_checksums",
 
 
@@ -58,11 +71,9 @@ rule all_tiff_checksums:
     output:
         "tiffs/tiff_checksums"
     log:
-        "tiffs/tiff_checksums.log"
+        "logs/tiff_checksums.log"
     resources:
         mem_mb = 512
-    container:
-        "docker://ilveroluca/raw2ometiff:0.3.0"
     shell:
         """
         cat {input:q} | sort > {output:q} 2> {log:q}
