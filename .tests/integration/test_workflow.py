@@ -38,11 +38,10 @@ def create_config(repository_path: Path, *image_paths: Iterable[Path]) -> Mappin
                      'public': 'repo.pub' },
         'output': {
             'format': 'ome-tiff',
-            'compression': "JPEG",
+            'compression': "jpeg",
             'quality': 90,
-            'tile_height': 4096,
-            'tile_width': 4096,
-            'max_cached_tiles': 256,
+            'tile_size': 512,
+            'thumbnail_width': 2048,
         }
     }
     return config
@@ -105,8 +104,10 @@ def test_workflow(empty_repository, mirax_1_zip):
 
         tiff_files = list((scratch_path / 'tiffs').rglob('*.tiff'))
         assert len(tiff_files) == 1
+        thumbnail_files = list((scratch_path / 'tiffs').rglob('*_thumb.jpg'))
+        assert len(thumbnail_files) == 1
         c4gh_files = list((scratch_path / 'c4gh').rglob('*.c4gh'))
-        assert len(c4gh_files) == 1
+        assert len(c4gh_files) == 2
         tiff_checksums = scratch_path / 'tiffs' / 'tiff_checksums'
         assert tiff_checksums.exists()
         with open(tiff_checksums) as f:
