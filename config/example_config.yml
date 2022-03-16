@@ -13,8 +13,7 @@ keypair:
 
 output:
   format: ome-tiff
-  compression: "JPEG-2000 Lossy"
-  quality: 0.5 # at the moment only has an effect for JPEG-2000 Lossy
-  tile_height: 4096
-  tile_width: 4096
-  max_cached_tiles: 256
+  compression: "jpeg"
+  quality: 90
+  tile_size: 512
+  thumbnail_width: 1024

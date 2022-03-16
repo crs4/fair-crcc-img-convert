@@ -18,7 +18,8 @@ properties:
         items:
           type: string
           description: >
-            Path to source files or directory. Directories will be globbed.
+            Path to source files or directory. Directories will be globbed
+            for files ending with any of the supported Extensions.
             Paths must be relative to repository path.
     required:
     - items
@@ -49,27 +50,26 @@ properties:
         type: string
         description: compression format to be applied by raw2ometiff
         enum:
-        - "Uncompressed"
-        - "LZW"
-        - "JPEG-2000"
-        - "JPEG-2000 Lossy"
-        - "JPEG"
-        - "zlib"
+        - none
+        - ccittfax4
+        - deflate
+        - jp2k
+        - jpeg
+        - lzw
+        - packbits
+        - webp
+        - zstd
       quality:
         type: number
         description: Quality parameter for raw2ometiff.
-      tile_height:
+      tile_size:
         type: integer
         minimum: 1
-        default: 1024
-      tile_width:
-        type: integer
-        minimum: 1
-        default: 1024
-      max_cached_tiles:
-        type: integer
-        minimum: 0
         default: 256
+      thumbnail_width:
+        type: integer
+        minimum: 1
+        default: 1024
     required:
     - format
     - compression
@@ -92,4 +92,3 @@ required:
 - sources
 - keypair
 - output
-
