@@ -13,7 +13,7 @@ rule slide_to_ometiff:
         quality = config['output']['quality'],
         tile_size = config['output']['tile_size'],
     container:
-        "docker://ilveroluca/fair-crcc-vips:0.1.0"
+        "docker://ilveroluca/fair-crcc-vips:0.1.1"
     resources:
         mem_mb = 2000,
     threads:
@@ -41,7 +41,7 @@ rule slide_to_thumbnail:
     params:
         width = config['output']['thumbnail_width']
     container:
-        "docker://ilveroluca/fair-crcc-vips:0.1.0"
+        "docker://ilveroluca/fair-crcc-vips:0.1.1"
     resources:
         mem_mb = 2000,
     threads:
