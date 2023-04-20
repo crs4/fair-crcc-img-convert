@@ -12,10 +12,8 @@ min_version("6.5.0")
 
 
 # Run as:
-# snakemake --snakefile ./img-convert.smk --profile ./profile --configfile zenbanc_config.yml --use-singularity --cores
+# snakemake --snakefile ./Snakefile --profile ./profile --configfile zenbanc_config.yml --use-singularity --cores
 #
-# The configuration must specify the input and output directory trees as
-# `img_directory` and `output_storage`
 
 
 # Default container for rules
