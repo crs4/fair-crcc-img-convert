@@ -48,7 +48,7 @@ properties:
         - ome-tiff
       compression:
         type: string
-        description: compression format to be applied by raw2ometiff
+        description: compression format to be applied to output images
         enum:
         - none
         - ccittfax4
@@ -61,7 +61,7 @@ properties:
         - zstd
       quality:
         type: number
-        description: Quality parameter for raw2ometiff.
+        description: Quality parameter. Meaning depends on chosen compression algorithm.
       tile_size:
         type: integer
         minimum: 1
@@ -77,7 +77,7 @@ properties:
 
   log_level:
     type: string
-    description: Log level for raw2ometiff and bioformats2raw
+    description: Log level.
     default: WARN
     enum:
     - OFF
