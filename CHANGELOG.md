@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.0](https://www.github.com/crs4/fair-crcc-img-convert/compare/v1.0.0...v1.1.0) (2023-04-20)
+
+
+### Features
+
+* Port workflow to custom vips-based tools ([#3](https://www.github.com/crs4/fair-crcc-img-convert/issues/3)) ([1e20624](https://www.github.com/crs4/fair-crcc-img-convert/commit/1e2062454e85a6a51daf3eb815cb368364163c7a))
+
+
+### Bug Fixes
+
+* Update fair-crcc-vips image to 0.1.1 ([7ead7bd](https://www.github.com/crs4/fair-crcc-img-convert/commit/7ead7bd5c69e70d8448faf38674d950fb6f66831))
+
 ## 1.0.0 (2022-01-31)
 
 
