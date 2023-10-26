@@ -1,5 +1,5 @@
 
-# Main entrypoint of the workflow. 
+# Main entrypoint of the workflow.
 
 import os
 from pathlib import Path
@@ -12,9 +12,9 @@ min_version("6.5.0")
 
 
 # Run as:
-# snakemake --snakefile ./Snakefile --profile ./profile --configfile zenbanc_config.yml --use-singularity --cores
+# snakemake --snakefile ../fair-crcc-img-convert/workflow/Snakefile --profile ./profile --configfile config.yml --use-singularity --cores
 #
-
+# Output files will be created in Snakemake's working directory.
 
 # Default container for rules
 container: "docker://ilveroluca/crypt4gh:1.5"
